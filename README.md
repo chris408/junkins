@@ -16,20 +16,25 @@ I created this script to automate my Jenkins server credential store decrypting.
 4. Submit your modified script to the server by clicking "Run". 
 5. Once you've captured the post in Burp Suite, copy this new data into the `postdata` file. 
 
+### Required
+
+Parsing the script output requires the BeautifulSoup Python library.
+
 ### TODO
 
-- Add CSRF 'Crumb' support.
-- Add proxy server command line argument support.
-- Add support to automate the creation of the `postdata` file.
-- Add support to detect local users to steal API keys. 
+- [ ] Add CSRF 'Crumb' support.
+- [ ] Add proxy server command line argument support.
+- [ ] Add support to automate the creation of the `postdata` file.
+- [ ] Add support to detect local users to steal API keys. 
     - Currently the code assumes the user 'admin' exists as a PoC.
-- Add support for the addtional Jenkins credential types.
+- [ ] Add support for the addtional Jenkins credential types.
+- [x] Parse command output from Jenkins server with BeautifulSoup.
 
 ### Example output:
 
-`python junkins.py  http://jenkins-server/script/`
-
-```Credentials store dump:
+```
+python junkins.py  http://jenkins-server/script/
+Credentials store dump:
 
 username: testuser
 password: testpassword
@@ -47,14 +52,14 @@ iXPyb28Xcl2qJme4DnfDqlw0hXgkRjJgiQRQzshvdUZYYARrftpP567okvuKvvMd
 ZHnzoYQj6gHKdVw86LZezATVwLwaiUgFH3TBgZLA91DJIVyS8q0G08ivbplqWZ9h
 ijrVmqA077XIA4J0sOBieey8ku+Z8FaarWdB/7g1AQslYT+Y3b0j6AWeIar82gXQ
 rAF8NCugUPwSBnfUbvQtbLCaLP8uV2VqXppWhVgOQ29ynAeUgjGqxprL279/ZI0B
-vRljoSp8ikQT+5jOW4RDEY0o2xGmh54R4QoG7Ob9DV5x/8HwiO25/Ols/jcy8GYs
+vRljoSp8ikQT+5jOW4RDEY0o2xGmh54R4QoG7Ob9DVRx/8HwiO25/1ls/jcy8GYs
 sZGr6WECgYEA966kc2F24UUUdFcYdx4ecn7qZkxkwynm6p9Xg7FxvLRSNKnJU1xH
 d/4JdrogsYxAY+EOvvvk85rCA9/Y1ZPn9WW4nPBl0pjaEyEQN1VUBqlznv6Bk3JL
 00//CsPP4JMUTfn7bn90WYqlvuje0jqQdlIruj/ePca2xHs7Rn0+MrcCgYEAz3Dq
 fMXrMquqYgz/qsXekmU/Q6Zd7dWdQa2rk96QoYURuWjHtm1fSPQ5XiCB95J1Xyry
 DB+iWBEDFjs8XF8s2yDp+pEf2DQug/+IvukEVjwozbQ/k84ehEZo1h94cZAuQCsQ
 UFFBILakvN5OcmAFlTKRj67b5vI5CoSQdBf6RVkCgYAh1fjfTkxIQACoWBGejD3K
-lG3/JaaKRtol6TiyY/ZOui+UxDEdsziMOuceEhVPTAKr4l36Vz0Szmx8zQK5Qqho
+lG3/JaaKRtol6TiyY/ZOui+UxDEdsziMOuceEhVPTAKr4l36Vz0Sz3x8zQK5Qqho
 jMnonqq6V2lLPbQSaxS8iD+kU85tzypuproHxXJLkqwubt0bXkwNw3QbHYL7I0cC
 8vzIR9tbgx8Kvm79lTR/BwKBgQCuKWBF16mLRkNrxPwWdcBTavv9oT01RGaeUOA/
 6tnFMkLaRtV+HT+lsZ5En8hegjFW8Gh9s0WK6OWNkbgw2ZuAcpbfT17MF6uCGVXG
@@ -71,7 +76,7 @@ passphrase: testpassphrase
 privatekey:
 -----BEGIN RSA PRlVATE KEY-----
 Proc-Type: 4,ENCRYPTED
-DEK-Info: AES-128-CBC,ECF08085F789D68F9161EEFABA897985
+DEK-Info: AES-128-CBC,ECF34585F755D68F9111EEFABA777921
 
 B8BJrH0tIFJQS26Q7DGluZwfzPB17YDl5pNvHMxoNITtmJn3xtNZQ+t68Qz61Qu1
 R/MyKhCQFo3Oc8Z5TXDH6ZuUQWpQA7Uy7D4qdchCQdTi/nqnIfQ2jTMweSLsa0/f
@@ -79,7 +84,7 @@ XcKimsh23ldGnT9vu7b21PDms2RFJlEJNFPH6lqSYU0LScyZF/m3EOspQKqus3Gd
 JjEB6Aw3VrlVj0Fl8MRpbVsOReILLby6+UgpoHScSrOtp4wHLL5sLhqEhg4X6azn
 JqDjhcSMKUklPQS2B1dVSgSYderNuR6C8nV5D7vRkUvHZZth47PTtXQbKi7tXbpj
 o/4s9N0tpaqfQIDFvYHuVncDbatENj8EAKiW/VqfQAIbh9ibPYFTu1/Gy9iv5HoL
-1qujx7gxX1qt88fF4kwLffBi4V850qpR/SxdLh/2tOU6DbyybEf+WgXAEZG+ruKL
+1qujx7gxX1qt88fF4kwLffBi4V850qpR/SxdLh/2tOU6DbyybEf+W4XAEZG+ruKL
 PaGjw3EYG34KYFELp0UxC5++vRkB9aaNx1htaFDGhEnYRAzWtd4Ew/Jgxp0y1BRz
 JxjQIYMazDvz/h+MVoQIR5ThOEb8iXxnSiDtVcvJiBRMFXIuUmmYnkdA/77nzWNW
 pZK5xyjLnRbcAvrFfT6vBixRGIOUODZCcI6aWeY+wgpHxgHXvIHk7D3nuAXTKJ1p
@@ -89,7 +94,7 @@ Rk1+hNIDBJ2jzYiQd34NwQmDiiB0afcETMTtosIjY0fLnz0axpt3rfXM6QaEe2RT
 JCAmpsR00Nc0H17ECqt2DP88nmkqKpjY2LWt8yqQzPZipV9TAsFuAxsna46ObTB/
 N32+xhq9IKrZVLd2ogeyH+uH8aESmM//xVRNKRAaFFgBgs/idvVrnbhjRxcTFx30
 mG+aYDviUH9GOsFkyCXAJ2PHPDIF5ExQAEtZUCQHDcu+JZWuh/nSzgXYLKyeywZU
-Jjs9QEEIJeykOaLFdjAwZ98K6oWIvr5WA+QeCGmINP3ycMImEcTl2/Ky+5EGHkPc
+Jjs9QEEIJeykOaLFdjAwZ98K6oWIvr5WA+QeCGmINP3ycMImEcTl23Ky+5EGHkPc
 vwu8jbHdHrF2uxYHCYJfJrMAHxPL9QMP5oxsJ1GWq4VlQI4A6BDyh+jvJrjKoFQx
 FfTKupjl9PykvslzACgyV6Zmg8wY+xL0urH2udj4lkXTk7yX9SGf7qxFcuVCcxDs
 2dycISkD53TkejBic72zuk6OQcVIdqLaMlXAnWSCFvJTew2rXTHqPTw88sAeZI6M
@@ -101,5 +106,5 @@ p/NsjfyK5g5XoPXaVUv8uPOGQPL/nM1Nt8EwYB2DEbhCBifUKWK9gL4kRvbgFQcY
 -----END RSA PRlVATE KEY-----
 
 
-admin user apiToken: 90d3270b90ab66f6042f7f9458a279ad
+admin user apiToken: 52d3270b90ab33f6021f7f9559a200ad
 ```
