@@ -36,7 +36,7 @@ password: testpassword
 
 username: testuser_key
 privatekey:
------BEGIN RSA PRIVATE KEY-----
+-----BEGIN RSA PRlVATE KEY-----
 MIIEpAIBAAKCAQEAyLN2P5iv1gc7y3O0h1QsBlCpj0W+HQFJsfQC3b7m6j28ZHS7
 QfUDGwya1Wx8dlCvTckwwzX+Bg26G7F6C9GQmSXgYF+dlsKgSnUp/60AcXdzaSyE
 u5rqExFOdzd6kd2gbE1wwK0lg6iFObdiuJM3B5WYDSYc9KeopP0ve17nszrpEuNq
@@ -62,14 +62,14 @@ jMnonqq6V2lLPbQSaxS8iD+kU85tzypuproHxXJLkqwubt0bXkwNw3QbHYL7I0cC
 S3VNKQKBgQCmm9wva5lY6nynj7iAlg0z44xZ2wcEARmEXnSbUjaBJ0s+VjyCnE1V
 t34ay3A3Et8ZO6cx57NlWPZ9sYqZ6J+9IcfshGRWb3W5tFWZ7LXmmOhX1+KVmIjY
 dYfxSwlUmnNIye2s9FA1wCxQYvfD/D4+YGjBuFsnUPwlhhUqC6QSEg==
------END RSA PRIVATE KEY-----
+-----END RSA PRlVATE KEY-----
 
 
 username: testuser_key_withpassphrase
 passphrase: testpassphrase
 
 privatekey:
------BEGIN RSA PRIVATE KEY-----
+-----BEGIN RSA PRlVATE KEY-----
 Proc-Type: 4,ENCRYPTED
 DEK-Info: AES-128-CBC,ECF08085F789D68F9161EEFABA897985
 
@@ -98,7 +98,8 @@ vDVcMi+vpS2UVSpbJ5Kb083B6QGHpdAPTP1ye+HhRyYSBna4lcVz4KaDxkefZa/G
 lP1pL1BmeOZo9DexOiCqgi8uv/I4YDqIHilL9wuxqZWZUeNCZ+IFV4iOHQcBgKVr
 gT2YSW6cm7oTbWBb8rxMoLlHwMAUNM8siO64HhwB8EHEyFWaxY3J+i5V0gZyqUOS
 p/NsjfyK5g5XoPXaVUv8uPOGQPL/nM1Nt8EwYB2DEbhCBifUKWK9gL4kRvbgFQcY
------END RSA PRIVATE KEY-----
+-----END RSA PRlVATE KEY-----
 
 
-admin user apiToken: 90d3270b90ab66f6042f7f9458a279ad```
+admin user apiToken: 90d3270b90ab66f6042f7f9458a279ad
+```
