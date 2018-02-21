@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 import requests
 import sys
 import re
@@ -19,5 +20,6 @@ headers = {
 postdata = open('postdata', 'r')
 #r = requests.post(url, headers=headers, proxies=proxyDict, data=postdata)
 r = requests.post(url, headers=headers, data=postdata)
-print r.text
+soup = BeautifulSoup(r.text, "html.parser")
+print(soup.findAll('pre')[1].text)
 postdata.close()
