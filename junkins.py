@@ -16,5 +16,8 @@ f = open('plain_postdata', 'r')
 postdata = f.read()
 f.close()
 
-r = requests.post(url, data={'script': postdata})
-print(r.text)
+try:
+    r = requests.post(url, data={'script': postdata})
+    print(r.text)
+except:
+    print("failed to connect to: %s" % url)
