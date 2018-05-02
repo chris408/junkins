@@ -1,39 +1,27 @@
 ### Junkins
 
-I created this script to automate my Jenkins server credential store decrypting.
+I created this script to automate my Jenkins server credential store decryption. By default Jenkins credentials are encrypted, but the encryption key is stored locally on the server. This allows anyone with script interface access to decrypt any secret stored on the server. 
 
 ### Files
 
 - `junkins.py`: This is the script itself.
-- `postdata`: This file contains the Jenkins generated post data.
-- `plain_postdata`: This is the orignal Jenkins groovy script. 
-
-### Customizing
-
-1. To customize your groovy script you'll need to modify the `plain_postdata` file. 
-2. Once you've modified it, navigate to a Jenkins system on /script, and paste in the new groovy script. 
-3. Fire up Burp Suite to capture the post. 
-4. Submit your modified script to the server by clicking "Run". 
-5. Once you've captured the post in Burp Suite, copy this new data into the `postdata` file. 
+- `postdata`: This file contains the Jenkins groovy script.
 
 ### Required
 
-Parsing the script output requires the BeautifulSoup Python library.
+Posting the groovy script requires the 'requests' Python library.
 
 ### TODO
 
 - [ ] Add CSRF 'Crumb' support.
 - [ ] Add proxy server command line argument support.
-- [ ] Add support to automate the creation of the `postdata` file.
-- [ ] Add support to detect local users to steal API keys. 
-    - Currently the code assumes the user 'admin' exists as a PoC.
-- [ ] Add support for the addtional Jenkins credential types.
+- [x] Add support to automate the creation of the `postdata` file.
 - [x] Parse command output from Jenkins server with BeautifulSoup.
 
 ### Example output:
 
 ```
-python junkins.py  http://jenkins-server/script/
+python junkins.py http://jenkins-server/scriptText/
 Credentials store dump:
 
 username: testuser

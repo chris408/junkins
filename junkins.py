@@ -1,11 +1,7 @@
-from bs4 import BeautifulSoup
 import requests
 import sys
-import re
 
 url = sys.argv[1]
-#http_proxy = sys.argv[2]
-#proxyDict = {"http" : http_proxy}
 headers = {
             'Cache-Control': 'max-age=0',
             'Upgrade-Insecure-Requests': '1',
@@ -16,10 +12,9 @@ headers = {
             'Accept-Language': 'en-US,en;q=0.9',
             'Connection': 'close'
         }
+f = open('plain_postdata', 'r')
+postdata = f.read()
+f.close()
 
-postdata = open('postdata', 'r')
-#r = requests.post(url, headers=headers, proxies=proxyDict, data=postdata)
-r = requests.post(url, headers=headers, data=postdata)
-soup = BeautifulSoup(r.text, "html.parser")
-print(soup.findAll('pre')[1].text)
-postdata.close()
+r = requests.post(url, data={'script': postdata})
+print(r.text)

