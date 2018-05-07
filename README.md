@@ -13,7 +13,8 @@ Posting the groovy script requires the 'requests' Python library.
 
 ### Docker instructions
 
-```$ docker build -t junkins ./
+```bash
+$ docker build -t junkins ./
 $ docker run -it junkins http://jenkins-server/scriptText/
 ``` 
 
@@ -26,8 +27,8 @@ $ docker run -it junkins http://jenkins-server/scriptText/
 
 ### Example output:
 
-```
-python junkins.py http://jenkins-server/scriptText/
+```bash
+$ python junkins.py http://jenkins-server/scriptText/
 Credential store dump:
 
 username: testuser
