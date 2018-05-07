@@ -13,7 +13,11 @@ Posting the groovy script requires the 'requests' Python library.
 
 ### Docker instructions
 
+Optionally, if you'd like to run junkins in a docker container, use the following commands:
+
 ```bash
+$ git clone https://github.com/chris408/junkins
+$ cd junkins
 $ docker build -t junkins ./
 $ docker run -it junkins http://jenkins-server/scriptText/
 ``` 
