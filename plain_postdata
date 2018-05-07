@@ -1,31 +1,36 @@
 import hudson.util.Secret
 def env = System.getenv()
 String homedir = env['JENKINS_HOME']
-String creds = new File(homedir + '/credentials.xml').text
+try {String creds = new File(homedir + '/credentials.xml').text
 
-def m = creds =~ /(<password>|<username>|<privateKey>|<secret>|<passphrase>|<jsonKeyFile>|<data>)(.+)(<\/)/;
+  def m = creds =~ /(<password>|<username>|<privateKey>|<secret>|<passphrase>|<jsonKeyFile>|<data>)(.+)(<\/)/;
 
-println("Credentials store dump:\n")
+  println("Credential store dump:")
 
-matchCount = m.getCount()
+  matchCount = m.getCount()
 
-i = 0
-while (i < matchCount) {
-  if (m[i][1] == "<username>") {
-    println "username: " + m[i][2]
+  i = 0
+  while (i < matchCount) {
+    if (m[i][1] == "<username>") {
+      println "username: " + m[i][2]
+    }
+    if (m[i][1] == "<password>") {
+      println "password: " + hudson.util.Secret.decrypt(m[i][2])
+    }
+    if (m[i][1] == "<passphrase>") {
+      println "passphrase: " + hudson.util.Secret.decrypt(m[i][2])
+    }
+    if (m[i][1] == "<privateKey>") {
+      println "privatekey:\n" + hudson.util.Secret.decrypt(m[i][2])  
+    }  
+    if (m[i][1] == "<jsonKeyFile>") {
+      String jsonFile = new File(m[i][2]).text
+      println hudson.util.Secret.decrypt(jsonFile)
+    }
+    i = i + 1
   }
-  if (m[i][1] == "<password>") {
-    println "password: " + hudson.util.Secret.decrypt(m[i][2]) + "\n"
-  }
-  if (m[i][1] == "<passphrase>") {
-    println "passphrase: " + hudson.util.Secret.decrypt(m[i][2]) + "\n"
-  }
-  if (m[i][1] == "<privateKey>") {
-    println "privatekey:\n" + hudson.util.Secret.decrypt(m[i][2]) + "\n"  
-  }  
-  if (m[i][1] == "<jsonKeyFile>") {
-    String jsonFile = new File(m[i][2]).text
-    println hudson.util.Secret.decrypt(jsonFile)
-  }
-  i = i + 1
+}
+
+catch (FileNotFoundException) {
+  print "Credentials.xml not found. There are probably no credentials stored on this server." 
 }

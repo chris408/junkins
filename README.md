@@ -5,7 +5,7 @@ I created this script to automate my Jenkins server credential store decryption.
 ### Files
 
 - `junkins.py`: This is the script itself.
-- `postdata`: This file contains the Jenkins groovy script.
+- `plain_postdata`: This file contains the Jenkins groovy script.
 
 ### Required
 
@@ -15,14 +15,13 @@ Posting the groovy script requires the 'requests' Python library.
 
 - [ ] Add CSRF 'Crumb' support.
 - [ ] Add proxy server command line argument support.
-- [x] Add support to automate the creation of the `postdata` file.
-- [x] Parse command output from Jenkins server with BeautifulSoup.
+- [x] Add support to automate the creation of the `plain_postdata` file.
 
 ### Example output:
 
 ```
 python junkins.py http://jenkins-server/scriptText/
-Credentials store dump:
+Credential store dump:
 
 username: testuser
 password: testpassword
