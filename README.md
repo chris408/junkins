@@ -11,11 +11,18 @@ I created this script to automate my Jenkins server credential store decryption.
 
 Posting the groovy script requires the 'requests' Python library.
 
+### Docker instructions
+
+```$ docker build -t junkins ./
+$ docker run -it junkins http://jenkins-server/scriptText/
+``` 
+
 ### TODO
 
 - [ ] Add CSRF 'Crumb' support.
 - [ ] Add proxy server command line argument support.
 - [x] Add support to automate the creation of the `plain_postdata` file.
+- [x] Add Dockerfile
 
 ### Example output:
 
