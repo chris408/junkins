@@ -1,5 +1,5 @@
 ![Junkins logo](https://chris408.com/junkins-logo.png)  
-Jenkins Project logo https://jenkins.io/ License: [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+Jenkins logo: https://jenkins.io/ License: [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 ### Junkins
 
