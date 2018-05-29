@@ -23,6 +23,9 @@ try {String creds = new File(homedir + '/credentials.xml').text
     if (m[i][1] == "<privateKey>") {
       println "privatekey:\n" + hudson.util.Secret.decrypt(m[i][2])  
     }  
+    if (m[i][1] == "<secret>") {
+      println "secret text:\n" + hudson.util.Secret.decrypt(m[i][2])  
+    }  
     if (m[i][1] == "<jsonKeyFile>") {
       String jsonFile = new File(m[i][2]).text
       println hudson.util.Secret.decrypt(jsonFile)
