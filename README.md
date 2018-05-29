@@ -1,3 +1,6 @@
+![Junkins logo](https://chris408.com/junkins-logo.png)
+(Adapted Jenkins Project logo https://jenkins.io/ License: [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/))
+
 ### Junkins
 
 I created this script to automate my Jenkins server credential store decryption. By default Jenkins credentials are encrypted, but the encryption key is stored locally on the server. This allows anyone with script interface access to decrypt any secret stored on the server. 
